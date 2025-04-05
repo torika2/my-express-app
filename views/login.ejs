@@ -1,0 +1,41 @@
+<div class="container d-flex justify-content-center align-items-center" style="height: 70vh">
+    <div class="bg-dark w-50 p-4 mt-4 mb-4 rounded shadow text-white">
+        <h2 class="text-center py-2">Welcome to the Login</h2>
+        <form method="POST" action="/login">
+            <!-- Email input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="form2Example1">Username</label>
+                <input name="username" type="text" id="form2Example1" class="form-control" required/>
+            </div>
+            <!-- Password input -->
+            <div data-mdb-input-init class="form-outline mb-4">
+                <label class="form-label" for="form2Example2">Password</label>
+                <input name="password" type="password" id="form2Example2" class="form-control" required/>
+            </div>
+            <!-- Submit button -->
+            <div class="d-flex justify-content-center">
+                <div class="p-1">
+                    <button
+                        type="submit"
+                        data-mdb-button-init
+                        data-mdb-ripple-init
+                        class="px-4 btn btn-success btn-block mb-4"
+                    >
+                        Sign in
+                    </button>
+                </div>
+                <div class="p-1">
+                    <a href="/register">
+                        <div
+                            data-mdb-button-init
+                            data-mdb-ripple-init
+                            class="px-4 btn btn-secondary btn-block mb-4"
+                        >
+                            Register
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

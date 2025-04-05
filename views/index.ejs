@@ -1,0 +1,12 @@
+<h2>Welcome to the Player Dashboard</h2>
+<p>This is a list of players:</p>
+<div>
+    <div>
+        <%= players %>
+    </div>
+    <% decks.map((deck)=>{%>
+    <div>
+        <%= deck.title %>
+    </div>
+    <% }) %>
+</div>
