@@ -1,28 +1,56 @@
-<div class="container mt-4">
-    <div class="row m-0">
-        <% decks.map((deck)=>{%>
-            <div class="col-md-4">
-                <div class="card bg-dark text-white w-100 d-flex flex-column align-items-center justify-content-center">
-                    <div class="py-2">
-                        <h4><%= deck.title %></h4>
+<div class="container mt-4 min-width">
+    <h3 class="text-center py-2"><%= auth_user.title %></h3>
+    <div>
+        <!--    GAME CARD DESIGN    -->
+        <div id="game-table" class="container card p-4 game-table rounded-top rounded-bottom-0 d-flex justify-content-center align-items-center">
+            <img src="/assets/images/game/2B.svg" id="table-card-image" height="350" width="250">
+        </div>
+        <div class="container mb-4 pb-4 d-flex justify-content-center">
+            <div id="playForm" class="w-100">
+                <div class="form-group row bg-dark rounded-bottom p-4">
+                    <div class="col-12 col-sm-6 col-md-5 d-flex align-items-center">
+                        <div class="d-flex align-items-center p-2" id="amount">
+                            <div onclick="chooseAmount(0)" class="active amount p-2 mx-1 rounded border cursor-pointer">100</div>
+                            <div onclick="chooseAmount(1)" class="amount p-2 mx-1 rounded border cursor-pointer">200</div>
+                            <div onclick="chooseAmount(2)" class="amount p-2 mx-1 rounded border cursor-pointer">300</div>
+                            <div onclick="chooseAmount(3)" class="amount p-2 mx-1 rounded border cursor-pointer">400</div>
+                            <div onclick="chooseAmount(4)" class="amount p-2 mx-1 rounded border cursor-pointer">500</div>
+                        </div>
                     </div>
-                    <div class="card-randomizer-image rounded"></div>
-                    <div class="py-2 w-100 px-5 d-flex justify-content-center">
-                        <% if(deck.players_count > 0 ){%>
-                            <% for (var i = 0; i < deck.players_count; i++){ %>
-                                Players joined <%= deck.players_count %>/8
-                            <% } %>
-                        <% } else { %>
-                            Players joined 0/8
-                        <% } %>
+                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-center">
+                        <select class="form-select p-2" aria-label="Default select example" id="select-input">
+                            <option value="null" selected>Select card</option>
+                            <option value="Hearts">Hearts</option>
+                            <option value="Diamonds">Diamonds</option>
+                            <option value="Clubs">Clubs</option>
+                            <option value="Spades">Spades</option>
+                        </select>
                     </div>
-                    <div class="pb-3 pt-2">
-                        <a href="/joinGame/<%= deck.id %>">
-                            <button class="btn btn-success">Join game</button>
-                        </a>
+                    <div class="col-12 col-sm-6 col-md-2 my-2 my-sm-0 d-flex align-items-center">
+                        <button
+                                onclick="startRound()"
+                                id="submit-button"
+                                class="w-100 btn btn-success"
+                        >
+                            Start round
+                        </button>
                     </div>
                 </div>
             </div>
-        <% }) %>
+        </div>
+        <h4 class="mt-4 text-center text-decoration-underline">Joined Players</h4>
+        <div class="row">
+            <% players?.map((player)=>{ %>
+                <div class="col-6 col-sm-4 col-md-2">
+                    <div class="card bg-dark text-white w-100 d-flex flex-column align-items-center justify-content-center">
+                        <div class="py-2">
+                            <h4 class="m-0"><%= player.username %></h4>
+                        </div>
+                    </div>
+                </div>
+            <% }) %>
+        </div>
     </div>
 </div>
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script src="/assets/js/cardPredictorHelper.js"></script>

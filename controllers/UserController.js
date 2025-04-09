@@ -70,7 +70,7 @@ export default (app, db, express)=>{
                     JWT_SECRET,
                     { expiresIn: '1h' }
                 )
-                res.cookie('player_id', player.id, { httpOnly: true, secure: true })
+                res.cookie('playerId', player.id, { httpOnly: true, secure: true })
                 res.cookie('token', token, { httpOnly: true, secure: true })
 
                 // Send token in response

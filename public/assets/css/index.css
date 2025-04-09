@@ -9,3 +9,53 @@
     width: 20px;
     height: 20px;
 }
+.cursor-pointer{
+    cursor: pointer;
+}
+.amount{
+    color: white;
+}
+.amount:hover{
+    color: green;
+    background: white!important;
+    border:solid 1px green!important;
+}
+.active{
+    background: green;
+    color: white;
+    border-color:green;
+}
+.game-table{
+    height: 500px;
+    min-width: 265px;
+    background: #008102;
+    border:solid 20px #8d4416;
+}
+.table-card-image{
+    box-shadow: 0 0 10px 5px rgba(0, 0, 0, 0.5);
+}
+.image-canvas-hide{
+    animation-name: hideImageCanvas;
+    animation-duration: 1s;
+}
+.image-canvas-show{
+    animation-name: showImageCanvas;
+    animation-duration: 1s;
+}
+
+@keyframes hideImageCanvas {
+    from {
+        transform: scale(1, 1)
+    }
+    to {
+        transform: scale(-0, 1)
+    }
+}
+@keyframes showImageCanvas {
+    from {
+        transform: scale(0, 1)
+    }
+    to {
+        transform: scale(1, 1)
+    }
+}

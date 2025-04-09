@@ -1,7 +1,10 @@
 import cookieParser from 'cookie-parser'
-import jwtMiddleware from "../middlewares/JwtMiddleware.js";
+import authenticateJWT from '../middlewares/authenticateJWT.js'
+import jwt from "jsonwebtoken";
+
 export default (app, db)=>{
-    const isLoggedIn=(req, res)=>{
+    const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret'
+    const isLoggedIn=(req)=>{
         return !!req.cookies?.token || req.headers['authorization']?.split(' ')[1]
     }
     app.use(cookieParser())
@@ -32,18 +35,32 @@ export default (app, db)=>{
             title: 'Register',
         })
     })
-    app.get('/joinGame/:deck_id', jwtMiddleware,(req, res)=>{
+    app.get('/joinGame/:deck_id', authenticateJWT, (req, res)=>{
         const { deck_id } = req.params
-        let player_id = res.cookies.player_id
-        db.query(`insert into deck_players (deck_id, player_id) values (?, ?)`, [deck_id, player_id], (err, res)=>{
-            if(err){
-                return res.redirect('/')
-            }
-            db.query(`SELECT * FROM decks WHERE id = ? RIGHT JOIN deck_players ON deck_players.deck_id = decks.id`, [deck_id],(err, players) => {
-                res.render('game', {
-                    players,
-                    title: 'Game',
-                })
+        let player_id = req.cookies.playerId
+        const insert_deck_player = `
+            INSERT INTO deck_players (deck_id, player_id, status) VALUES (?, ?, 'joined')
+            ON DUPLICATE KEY UPDATE deck_id = ?
+        `
+        const select_players = `
+            SELECT decks.id as deck_id, decks.title as title, player_id ,username ,balance, status FROM decks
+            RIGHT JOIN deck_players ON deck_players.deck_id = decks.id 
+            LEFT JOIN players ON deck_players.player_id = players.id
+            WHERE decks.id = ?
+        `
+        db.query(insert_deck_player, [deck_id, player_id, deck_id], ()=>{
+            db.query(select_players, [deck_id],(err, players) => {
+                console.log(err)
+                if(!err){
+                    res.render('game', {
+                        players,
+                        auth_user: players.find(player => player.player_id === player_id),
+                        is_logged_in:isLoggedIn(req),
+                        title: 'Game',
+                    })
+                }else{
+                    res.redirect('/')
+                }
             })
         })
     })
