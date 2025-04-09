@@ -1,7 +1,5 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
-import jwtMiddleware from "../middlewares/JwtMiddleware.js"
-import {stringify} from "node:querystring";
 
 export default (app, db, express)=>{
     app.use(express.urlencoded({ extended: true }))
@@ -34,6 +32,7 @@ export default (app, db, express)=>{
     app.get('/logout', async (req, res) => {
         try {
             res.clearCookie("token")
+            res.clearCookie("player_id")
             return res.redirect('/')
         } catch (error) {
             return res.status(500).json({ error: error.message })
@@ -71,6 +70,7 @@ export default (app, db, express)=>{
                     JWT_SECRET,
                     { expiresIn: '1h' }
                 )
+                res.cookie('player_id', player.id, { httpOnly: true, secure: true })
                 res.cookie('token', token, { httpOnly: true, secure: true })
 
                 // Send token in response
