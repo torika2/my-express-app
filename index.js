@@ -6,6 +6,8 @@ import dashboardController from "./controllers/DashboardController.js"
 import apiController from "./controllers/ApiController.js"
 
 const app = express()
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 // Set up view engine
 app.set('view engine', 'ejs');
 // Use express-ejs-layouts for handling layouts
@@ -18,7 +20,7 @@ app.use(express.static('public')); // Serve static files (CSS, JS)
 // VIEWS
 dashboardController(app, db)
 // FUNCTIONS
-userController(app, db, express)
+userController(app, db)
 // API
 apiController(app, db)
 

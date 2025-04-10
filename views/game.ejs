@@ -1,39 +1,52 @@
 <div class="container mt-4 min-width">
-    <h3 class="text-center py-2"><%= auth_user.title %></h3>
-    <div>
+    <h3 class="text-center py-2"><%= auth_user?.title %> (<span>Round <span id="round">1</span>)</span></h3>
+    <div class="w-100 d-flex align-items-center text-center justify-content-center text-secondary py-4 sec-text">
+        <div id="timer" class="m-0">
+            30
+        </div>
+        <div>
+            sec
+        </div>
+    </div>
+    <div class="position-relative">
+        <div class="alert position-absolute w-100 text-center" id="response-alert"></div>
         <!--    GAME CARD DESIGN    -->
         <div id="game-table" class="container card p-4 game-table rounded-top rounded-bottom-0 d-flex justify-content-center align-items-center">
-            <img src="/assets/images/game/2B.svg" id="table-card-image" height="350" width="250">
+            <img src="/assets/images/game/2B.svg" id="table-card-image" height="300" width="200">
         </div>
         <div class="container mb-4 pb-4 d-flex justify-content-center">
             <div id="playForm" class="w-100">
                 <div class="form-group row bg-dark rounded-bottom p-4">
-                    <div class="col-12 col-sm-6 col-md-5 d-flex align-items-center">
+                    <div class="col-12 col-sm-6 col-md-6 d-flex align-items-center disable-divs">
                         <div class="d-flex align-items-center p-2" id="amount">
-                            <div onclick="chooseAmount(0)" class="active amount p-2 mx-1 rounded border cursor-pointer">100</div>
-                            <div onclick="chooseAmount(1)" class="amount p-2 mx-1 rounded border cursor-pointer">200</div>
-                            <div onclick="chooseAmount(2)" class="amount p-2 mx-1 rounded border cursor-pointer">300</div>
-                            <div onclick="chooseAmount(3)" class="amount p-2 mx-1 rounded border cursor-pointer">400</div>
-                            <div onclick="chooseAmount(4)" class="amount p-2 mx-1 rounded border cursor-pointer">500</div>
+                            <div onclick="chooseAmount(0)" class="active amount p-2 mx-1 rounded border cursor-pointer d-flex align-items-center justify-content-center">
+                                <img src="/assets/images/game/none.svg" height="25" alt="">
+                            </div>
+                            <div onclick="chooseAmount(1)" class="amount p-2 mx-1 rounded border cursor-pointer">100</div>
+                            <div onclick="chooseAmount(2)" class="amount p-2 mx-1 rounded border cursor-pointer">200</div>
+                            <div onclick="chooseAmount(3)" class="amount p-2 mx-1 rounded border cursor-pointer">300</div>
+                            <div onclick="chooseAmount(4)" class="amount p-2 mx-1 rounded border cursor-pointer">400</div>
+                            <div onclick="chooseAmount(5)" class="amount p-2 mx-1 rounded border cursor-pointer">500</div>
                         </div>
                     </div>
-                    <div class="col-12 col-sm-6 col-md-4 d-flex align-items-center">
-                        <select class="form-select p-2" aria-label="Default select example" id="select-input">
-                            <option value="null" selected>Select card</option>
-                            <option value="Hearts">Hearts</option>
-                            <option value="Diamonds">Diamonds</option>
-                            <option value="Clubs">Clubs</option>
-                            <option value="Spades">Spades</option>
-                        </select>
-                    </div>
-                    <div class="col-12 col-sm-6 col-md-2 my-2 my-sm-0 d-flex align-items-center">
-                        <button
-                                onclick="startRound()"
-                                id="submit-button"
-                                class="w-100 btn btn-success"
-                        >
-                            Start round
-                        </button>
+                    <div class="col-12 col-sm-6 col-md-6 d-flex align-items-center disable-divs">
+                        <div class="d-flex align-items-center p-2" id="card-icons">
+                            <div onclick="chooseCardIcon(0)" class="active amount p-2 mx-1 rounded border cursor-pointer">
+                                <img src="/assets/images/game/none.svg" height="30" alt="">
+                            </div>
+                            <div onclick="chooseCardIcon(1)" class="amount p-2 mx-1 rounded border cursor-pointer">
+                                <img height="30" src="/assets/images/card_icons/hearts.png" alt="Hearts">
+                            </div>
+                            <div onclick="chooseCardIcon(2)" class="amount p-2 mx-1 rounded border cursor-pointer">
+                                <img height="30" src="/assets/images/card_icons/clubs.png" alt="Clubs">
+                            </div>
+                            <div onclick="chooseCardIcon(3)" class="amount p-2 mx-1 rounded border cursor-pointer">
+                                <img height="30" src="/assets/images/card_icons/diamonds.png" alt="Diamonds">
+                            </div>
+                            <div onclick="chooseCardIcon(4)" class="amount p-2 mx-1 rounded border cursor-pointer">
+                                <img height="30" src="/assets/images/card_icons/spades.png" alt="Spades">
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

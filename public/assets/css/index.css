@@ -59,3 +59,12 @@
         transform: scale(1, 1)
     }
 }
+
+.alert{
+    top:-150px;
+    left: 0px;
+    z-index: 100;
+}
+.sec-text{
+    font-size: 25px;
+}

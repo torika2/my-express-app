@@ -21,12 +21,7 @@
                 <% if (is_logged_in) { %>
                     <div class="pb-1 px-2 d-flex align-items-center">
                         <a href="/wallet" class="border-bottom btn rounded-0 text-white text-decoration-none">
-                            WALLET
-                        </a>
-                    </div>
-                    <div class="pb-1 px-2 d-flex align-items-center">
-                        <a href="/dashboard" class="border-bottom btn rounded-0 text-white text-decoration-none">
-                            Dashboard
+                            Balance : <strong id="header-balance"><%= auth_user?.balance %></strong><strong>$</strong>
                         </a>
                     </div>
                     <div class="pb-1 px-2 d-flex align-items-center">

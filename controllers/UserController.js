@@ -1,9 +1,7 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 
-export default (app, db, express)=>{
-    app.use(express.urlencoded({ extended: true }))
-    app.use(express.json())
+export default (app, db)=>{
     // Secret key for JWT
     const JWT_SECRET = process.env.JWT_SECRET || 'your_jwt_secret'
     // Player balance
