@@ -26,7 +26,7 @@ node index.js
  In project folders there is mysql_tables folder , you can import tables from there.
 
 ## Registered Account
- username - player
- password - player123
+ - username - player
+ - password - player123
 
 ---
