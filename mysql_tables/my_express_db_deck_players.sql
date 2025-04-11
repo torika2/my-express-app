@@ -23,11 +23,14 @@ DROP TABLE IF EXISTS `deck_players`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `deck_players` (
-  `id` int NOT NULL,
-  `deck_id` varchar(45) DEFAULT NULL,
-  `player_id` varchar(45) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  `id` int NOT NULL AUTO_INCREMENT,
+  `deck_id` varchar(225) NOT NULL,
+  `player_id` varchar(225) NOT NULL,
+  `status` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `id_UNIQUE` (`id`),
+  UNIQUE KEY `player_id_UNIQUE` (`player_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=857 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +39,7 @@ CREATE TABLE `deck_players` (
 
 LOCK TABLES `deck_players` WRITE;
 /*!40000 ALTER TABLE `deck_players` DISABLE KEYS */;
+INSERT INTO `deck_players` VALUES (14,'1','2','Unfinished round 3'),(856,'1','4','joined');
 /*!40000 ALTER TABLE `deck_players` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -48,4 +52,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-06  1:33:55
+-- Dump completed on 2025-04-11 12:44:11

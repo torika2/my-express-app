@@ -1,4 +1,8 @@
 import authenticateJWT from "../middlewares/authenticateJWT.js"
+import crypto from 'crypto'
+
+const SHARED_SECRET = process.env.SHARED_SECRET_KEY
+const ALLOWED_TIME_DIFF = 5 * 60 * 1000
 
 export default (app, db)=>{
     // Create player statistics
@@ -35,5 +39,39 @@ export default (app, db)=>{
     app.post('/api/player-leaving' ,async (req, res) => {
         const { status } = req.body
         db.query(`UPDATE deck_players SET status = ? WHERE player_id = ?`, [status, req.cookies.playerId])
+    })
+
+    function generateSignature(method, path, timestamp, body) {
+        const bodyString = JSON.stringify(body)
+        const canonicalString = `${method}:${path}:${timestamp}:${bodyString}`
+        return crypto.createHmac('sha256', SHARED_SECRET).update(canonicalString).digest('hex')
+    }
+
+    function constantTimeCompare(a, b) {
+        return crypto.timingSafeEqual(Buffer.from(a), Buffer.from(b))
+    }
+
+    app.post('/api/deposit', (req, res) => {
+        const signature = req.headers['x-signature']
+        const timestamp = req.headers['x-timestamp']
+        const method = 'POST'
+        const path = '/api/deposit'
+        const now = Date.now()
+
+        if (!signature || !timestamp) {
+            return res.status(401).json({ error: 'Missing signature or timestamp' })
+        }
+
+        if (Math.abs(now - parseInt(timestamp)) > ALLOWED_TIME_DIFF) {
+            return res.status(408).json({ error: 'Request timestamp too old or too far in future' })
+        }
+
+        const expectedSignature = generateSignature(method, path, timestamp, req.body)
+
+        if (!constantTimeCompare(expectedSignature, signature)) {
+            return res.status(403).json({ error: 'Invalid signature' })
+        }
+
+        res.json({ success: true, message: 'Deposit successful' })
     })
 }

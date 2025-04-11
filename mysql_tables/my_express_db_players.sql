@@ -26,10 +26,10 @@ CREATE TABLE `players` (
   `id` int NOT NULL AUTO_INCREMENT,
   `username` varchar(50) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `balance` decimal(10,2) DEFAULT '0.00',
+  `balance` decimal(10,2) NOT NULL DEFAULT '1000.00',
   PRIMARY KEY (`id`),
   UNIQUE KEY `username` (`username`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `players` (
 
 LOCK TABLES `players` WRITE;
 /*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (1,'torika2','Santeqniki123@',100.00),(2,'torika23','$2b$10$5BZDVYnpz9t4VRTEWpo9rek/OlbxxKML90uKu/7OCPJ8ifgsptG/a',0.00),(3,'torika234','$2b$10$THC5Xaot9MnYjwQPAszMue2StYVJT3vuRE1wYOfwMnNx4dhETMeaS',0.00);
+INSERT INTO `players` VALUES (2,'torika23','$2b$10$5BZDVYnpz9t4VRTEWpo9rek/OlbxxKML90uKu/7OCPJ8ifgsptG/a',3400.00),(4,'player','$2b$10$DiOc51sOQGyvHumjCpsYHeI9nVqpEZ5e06mVfb9ipomqQqpwonZJi',1000.00);
 /*!40000 ALTER TABLE `players` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -51,4 +51,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-04-06  1:33:55
+-- Dump completed on 2025-04-11 12:44:11
