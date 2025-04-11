@@ -11,11 +11,14 @@ const state = {
 
 function disableDivsByValue(){
     let divs = document.querySelectorAll('.disable-divs')
+    let round_text = document.getElementById('round-text')
     if(state.bidding){
+        round_text.innerText = ''
         divs.forEach((div)=>{
             div.setAttribute('style', 'opacity:0.5;pointer-events: none;')
         })
     }else{
+        round_text.innerText = 'Round starts in'
         divs.forEach((div)=>{
             div.setAttribute('style', '')
         })
