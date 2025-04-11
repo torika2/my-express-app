@@ -13,6 +13,11 @@
 
 ---
 
+## Mysql Workbench
+ In project folders there is mysql_tables folder , you can import tables from there.
+
+---
+
 ## 📦 Installation
 
 ```bash
@@ -21,9 +26,6 @@ cd my-express-app
 npm install
 node index.js
 ```
-
-## Mysql Workbench
- In project folders there is mysql_tables folder , you can import tables from there.
 
 ## Registered Account
  - username - player
