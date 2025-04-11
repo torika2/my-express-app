@@ -9,9 +9,7 @@
                     <div class="card-randomizer-image rounded"></div>
                     <div class="py-2 w-100 px-5 d-flex justify-content-center">
                         <% if(deck.players_count > 0 ){ %>
-                            <% for (var i = 0; i < deck.players_count; i++){ %>
-                                Players joined <%= deck.players_count %>/8
-                            <% } %>
+                            Players joined <%= deck.players_count %>/8
                         <% } else { %>
                                 Players joined 0/8
                         <% } %>
