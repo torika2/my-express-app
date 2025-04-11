@@ -1,7 +1,7 @@
 ## 🛠️ Tech Stack
 - Frontend: EJS, Bootstrap
 - Backend: Node.js, Express
-- Database: Mysql Workbench
+- Database: Mysql (Workbench)
 
 ---
 
