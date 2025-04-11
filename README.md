@@ -22,7 +22,7 @@ npm install
 node index.js
 ```
 
-## ✨ Mysql Workbench
+## Mysql Workbench
  In project folders there is mysql_tables folder , you can import tables from there.
 
 ## Registered Account
