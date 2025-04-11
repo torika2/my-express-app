@@ -14,7 +14,7 @@
 ---
 
 ## Mysql Workbench
- In project folders there is mysql_tables folder , you can import tables from there.
+- Inside the project directory, you'll find a mysql_tables folder containing the SQL files. You can import these to set up the necessary database tables.
 
 ---
 
